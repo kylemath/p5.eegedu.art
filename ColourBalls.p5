@@ -1,0 +1,85 @@
+class MySketch extends React.Component {
+ setup(p5, whereToPlot) {
+   
+  p5.frameRate(10)
+  class Circle {
+    constructor(x, y, xSpeed, ySpeed) {
+      this.x = x;
+      this.y = y;
+      this.xSpeed = xSpeed;
+      this.ySpeed = ySpeed;
+    }
+      
+    move() {
+      this.x += this.xSpeed;
+      if (this.x < 0 || this.x > p5.width) {
+        this.xSpeed *= -1
+      }
+       
+      this.y += this.ySpeed;
+      if (this.y < 0 || this.y > p5.height) {
+        this.ySpeed *= -1  
+      }
+    }
+      
+    display() {
+      overlap = 150;
+      if (this.x + p5.random(-overlap,overlap) > p5.width/2) {
+        if (this.y + p5.random(-overlap,overlap) > p5.height/2) {
+          p5.fill(p5.random(255), brain.current.LeftFrontDelta, brain.current.RightFrontDelta);
+          p5.circle(this.x, this.y, brain.current.RightBackAlpha/10+p5.random(10));
+        } else {
+          yel = p5.random(255)
+          p5.fill( yel, yel, brain.current.LeftFrontDelta);
+          p5.circle(this.x, this.y, brain.current.RightFrontAlpha+p5.random(10));
+        }
+      } else {
+        if (this.y + p5.random(-overlap,overlap) > p5.height/2) {
+          p5.fill(brain.current.LeftFrontDelta, brain.current.RightFrontDelta, p5.random(255));
+          p5.circle(this.x, this.y, brain.current.LeftBackAlpha/10+p5.random(10));
+        } else {
+          p5.fill(brain.current.LeftFrontDelta, p5.random(255), brain.current.RightFrontDelta);
+          p5.circle(this.x, this.y, brain.current.LeftFrontAlpha+p5.random(10));
+        }      }
+    }
+  }
+    
+  p5.createCanvas(500, 500).parent(whereToPlot)
+  
+
+ circles = [];
+  
+  for (i=0; i<500; i++) {
+    circles[i] = new Circle(p5.random(p5.width), p5.random(p5.height), p5.random(-3,3), p5.random(-3,3))
+  }  
+
+   
+ }
+
+ draw(p5) {
+   p5.background(0);
+   
+ 
+     
+   for (let i=0; i < circles.length; i++) {
+       circles[i].move()
+       circles[i].display()
+   }
+ 
+ }
+
+ 
+ render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)

@@ -1,9 +1,10 @@
+
 // https://p5js.org/examples/interaction-snake-game.html
 
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
    
-   numSegments = 10
+   numSegments = 10;
    direction = 'right'
    xStart = 0 
    yStart = 250
@@ -13,7 +14,7 @@ class MySketch extends React.Component {
    xFruit = 250
    yFruit = 250
    score = 0
-
+   
    p5.createCanvas(500, 500).parent(whereToPlot)
    p5.frameRate(15)
    p5.stroke(255)
@@ -27,9 +28,12 @@ class MySketch extends React.Component {
  }
  
  draw(p5) {
-   
+  
    ALPHA = 50-brain.current.LeftBackAlpha
-
+   DELTA = p5.map(brain.current.LeftBackDelta,0,100,0,10,true);
+   
+   diff = DELTA;
+   
    p5.background(0)
 
    p5.fill(255)
@@ -39,7 +43,9 @@ class MySketch extends React.Component {
    p5.strokeWeight(10)
 
    for (i = 0; i < numSegments - 1; i++) {
+     p5.stroke(200, DELTA, 20)
      p5.line(xCor[i], yCor[i], xCor[i + 1], yCor[i + 1])
+     p5.stroke(255)
    }
    updateSnakeCoordinates() 
    checkGameStatus()
@@ -100,7 +106,9 @@ class MySketch extends React.Component {
    
    function checkForFruit() {
      p5.strokeWeight(ALPHA)
+     p5.stroke(20, (ALPHA*10), (ALPHA*10))
      p5.point(xFruit, yFruit)
+     p5.stroke(255)
      p5.strokeWeight(10)
 
      give = ALPHA-10 // so that as the point grows the snake eats it
@@ -165,3 +173,4 @@ keyPressed(p5) {
 render (
  <MySketch />
 )
+

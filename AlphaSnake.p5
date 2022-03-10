@@ -29,8 +29,8 @@ class MySketch extends React.Component {
  
  draw(p5) {
   
-   ALPHA = 50-brain.current.LeftBackAlpha
-   DELTA = p5.map(brain.current.LeftBackDelta,0,100,0,10,true);
+   ALPHA = 50-brain.current.data.alpha[0]
+   DELTA = p5.map(brain.current.data.delta[0],0,100,0,10,true);
    
    diff = DELTA;
    

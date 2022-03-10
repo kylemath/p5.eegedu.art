@@ -18,11 +18,11 @@ class MySketch extends React.Component {
    // Electrodes 0, 1, 2, 3
    // Delta, Theta, Alpha, Beta, Gamma
    // e.g.:
-   DELTA = brain.current.data.delta[0];
-   THETA = brain.current.data.theta[0];
-   ALPHA = brain.current.data.alpha[0];   
-   BETA =  brain.current.data.beta[0];
-   GAMMA =  brain.current.data.gamma[0];
+   DELTA = brain.current.data.delta[0]* 10;
+   THETA = brain.current.data.theta[0]* 10;
+   ALPHA = brain.current.data.alpha[0]* 10;   
+   BETA =  brain.current.data.beta[0]* 10;
+   GAMMA =  brain.current.data.gamma[0]* 10;
    
    
   p5.background(0) 

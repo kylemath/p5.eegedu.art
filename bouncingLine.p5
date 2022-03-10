@@ -30,10 +30,10 @@ class MySketch extends React.Component {
     h = p5.constrain(h, 0, 255);
     
     // move a bit
-    startX += deltaStartX * brain.current.data.alpha[1]/10;
-    startY += deltaStartY * brain.current.data.alpha[1]/10;
-    endX += deltaEndX * brain.current.data.alpha[2]/10;
-    endY += deltaEndY * brain.current.data.alpha[2]/10;
+    startX += deltaStartX * brain.current.data.alpha[1];
+    startY += deltaStartY * brain.current.data.alpha[1];
+    endX += deltaEndX * brain.current.data.alpha[2];
+    endY += deltaEndY * brain.current.data.alpha[2];
     
     if(startX < 0 || startX > p5.width){
       deltaStartX *= -1;

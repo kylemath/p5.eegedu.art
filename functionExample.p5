@@ -18,12 +18,11 @@ class MySketch extends React.Component {
    MOUSEY = p5.mouseY;
 
    // Availalable EEG Variables:
-   // Left, Right
-   // Front, Back
+   // Electrodes 0, 1, 2, 3
    // Delta, Theta, Alpha, Beta, Gamma
    // e.g.:
-   LEFTALPHA = brain.current.RightFrontAlpha;
-   RIGHTALPHA = brain.current.LeftFrontAlpha;
+   LEFTALPHA = brain.current.data.alpha[1];
+   RIGHTALPHA = brain.current.data.alpha[2];
    
    function drawCircle(r, g, b, x, y, d) {
      p5.fill(r, g, b);

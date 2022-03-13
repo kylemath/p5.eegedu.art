@@ -1,3 +1,6 @@
+// piWedges.p5 - Ky Mathewson
+// Display frequency bands with wedges in circle
+
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
    p5.createCanvas(500, 500).parent(whereToPlot)

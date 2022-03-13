@@ -1,4 +1,5 @@
-
+// AlphaSnake.p5 - Ky Mathewson
+// Playable Snake game with difficulty controlled with frequency bands
 // https://p5js.org/examples/interaction-snake-game.html
 
 class MySketch extends React.Component {

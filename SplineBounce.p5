@@ -1,3 +1,7 @@
+// SplineBounce.p5 - Ky Mathewson
+// Demonstration spline drawing with frequency bands
+
+
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
    p5.createCanvas(500, 500).parent(whereToPlot)

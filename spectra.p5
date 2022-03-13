@@ -1,4 +1,10 @@
-class MySketch extends React.Component {
+// spectra.p5 - Kyle Mathewson
+// Draw the incoming spectra overlapping on one another
+// Click to refresh background and start again
+// Notice different data location for spectra data
+// brain.current.spectra.
+
+ class MySketch extends React.Component {
  setup(p5, whereToPlot) {
    p5.createCanvas(600, 500).parent(whereToPlot)
    p5.colorMode(p5.RGB,255,255,255,1);

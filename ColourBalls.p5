@@ -1,3 +1,6 @@
+// ColourBalls.p5 - Ky Mathewson
+// Demonstration of creation of class with frequency bands
+
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
    

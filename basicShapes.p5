@@ -1,3 +1,5 @@
+// basicShapes.p5 - Ky Mathewson
+// Use of frequency bands to control shapes
 
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {

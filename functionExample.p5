@@ -1,3 +1,5 @@
+// functionExample.p5 - Ky Mathewson
+// Example of how to create your own functions inside draw
 
 
 class MySketch extends React.Component {

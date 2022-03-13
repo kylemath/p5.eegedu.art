@@ -1,3 +1,7 @@
+// brainDraw.p5 - Ky Mathewson
+// Use frequency bands to control cursor location and shade
+
+
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
    p5.createCanvas(500, 500).parent(whereToPlot)

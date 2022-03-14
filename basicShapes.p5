@@ -1,3 +1,5 @@
+// basicShapes.p5 - Ky Mathewson
+// Use of frequency bands to control shapes
 
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
@@ -20,8 +22,8 @@ class MySketch extends React.Component {
    // Electrodes 0, 1, 2, 3
    // Delta, Theta, Alpha, Beta, Gamma
    // e.g.:
-   LEFTALPHA = brain.current.data.alpha[1];
-   RIGHTALPHA = brain.current.data.alpha[2];
+   LEFTALPHA = brain.current.bands.data.alpha[1];
+   RIGHTALPHA = brain.current.bands.data.alpha[2];
    
    p5.fill(200, 120, 100);
    p5.ellipse(MOUSEX-100,MOUSEY,LEFTALPHA*2);

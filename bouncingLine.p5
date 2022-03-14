@@ -1,3 +1,6 @@
+// bouncingLine.p5 - Ky Mathewson
+// Classic bouncing line screen saver with line density controlled by frequency bands
+
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
    p5.createCanvas(500, 500).parent(whereToPlot)
@@ -30,10 +33,10 @@ class MySketch extends React.Component {
     h = p5.constrain(h, 0, 255);
     
     // move a bit
-    startX += deltaStartX * brain.current.data.alpha[1];
-    startY += deltaStartY * brain.current.data.alpha[1];
-    endX += deltaEndX * brain.current.data.alpha[2];
-    endY += deltaEndY * brain.current.data.alpha[2];
+    startX += deltaStartX * brain.current.bands.data.alpha[1];
+    startY += deltaStartY * brain.current.bands.data.alpha[1];
+    endX += deltaEndX * brain.current.bands.data.alpha[2];
+    endY += deltaEndY * brain.current.bands.data.alpha[2];
     
     if(startX < 0 || startX > p5.width){
       deltaStartX *= -1;

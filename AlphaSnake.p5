@@ -1,4 +1,5 @@
-
+// AlphaSnake.p5 - Ky Mathewson
+// Playable Snake game with difficulty controlled with frequency bands
 // https://p5js.org/examples/interaction-snake-game.html
 
 class MySketch extends React.Component {
@@ -29,8 +30,8 @@ class MySketch extends React.Component {
  
  draw(p5) {
   
-   ALPHA = 50-brain.current.data.alpha[0]* 10
-   DELTA = p5.map(brain.current.data.delta[0]* 10,0,100,0,10,true);
+   ALPHA = 50-brain.current.bands.data.alpha[0]* 10
+   DELTA = p5.map(brain.current.bands.data.delta[0]* 10,0,100,0,10,true);
    
    diff = DELTA;
    

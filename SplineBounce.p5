@@ -1,3 +1,7 @@
+// SplineBounce.p5 - Ky Mathewson
+// Demonstration spline drawing with frequency bands
+
+
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
    p5.createCanvas(500, 500).parent(whereToPlot)
@@ -19,11 +23,11 @@ class MySketch extends React.Component {
    // Electrodes 0, 1, 2, 3
    // Delta, Theta, Alpha, Beta, Gamma
    // e.g.:
-   DELTA = brain.current.data.delta[0] * 10;
-   THETA = brain.current.data.theta[0] * 10;
-   ALPHA = brain.current.data.alpha[0] * 10;   
-   BETA =  brain.current.data.beta[0] * 10;
-   GAMMA =  brain.current.data.gamma[0] * 10;
+   DELTA =  brain.current.bands.data.delta[0] * 10;
+   THETA =  brain.current.bands.data.theta[0] * 10;
+   ALPHA =  brain.current.bands.data.alpha[0] * 10;   
+   BETA =   brain.current.bands.data.beta[0] * 10;
+   GAMMA =  brain.current.bands.data.gamma[0] * 10;
 
    bands= ['D', 'T', 'A', 'B', 'G'];
    coords = [50, HEIGHT-DELTA, 150, HEIGHT-THETA, 250, HEIGHT-ALPHA, 350, HEIGHT-BETA, 450, HEIGHT-GAMMA];

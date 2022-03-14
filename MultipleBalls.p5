@@ -1,3 +1,7 @@
+// MultipleBalls.p5 - Ky Mathewson
+// Another class examle with more balls
+
+
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
   class Circle {
@@ -21,7 +25,7 @@ class MySketch extends React.Component {
     }
       
     display() {
-      p5.circle(this.x, this.y, brain.current.data.alpha[2]+p5.random(10));
+      p5.circle(this.x, this.y, brain.current.bands.data.alpha[2]+p5.random(10));
     }
   }
     

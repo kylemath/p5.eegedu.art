@@ -1,3 +1,6 @@
+// ColourBalls.p5 - Ky Mathewson
+// Demonstration of creation of class with frequency bands
+
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
    
@@ -26,20 +29,20 @@ class MySketch extends React.Component {
       overlap = 150;
       if (this.x + p5.random(-overlap,overlap) > p5.width/2) {
         if (this.y + p5.random(-overlap,overlap) > p5.height/2) {
-          p5.fill(p5.random(255), brain.current.data.delta[1], brain.current.data.delta[2]);
-          p5.circle(this.x, this.y, brain.current.data.alpha[3]/10+p5.random(10));
+          p5.fill(p5.random(255), brain.current.bands.data.delta[1], brain.current.bands.data.delta[2]);
+          p5.circle(this.x, this.y, brain.current.bands.data.alpha[3]/10+p5.random(10));
         } else {
           yel = p5.random(255)
-          p5.fill( yel, yel, brain.current.data.delta[1]);
-          p5.circle(this.x, this.y, brain.current.data.alpha[3]+p5.random(10));
+          p5.fill( yel, yel, brain.current.bands.data.delta[1]);
+          p5.circle(this.x, this.y, brain.current.bands.data.alpha[3]+p5.random(10));
         }
       } else {
         if (this.y + p5.random(-overlap,overlap) > p5.height/2) {
-          p5.fill(brain.current.data.delta[1], brain.current.data.delta[2], p5.random(255));
-          p5.circle(this.x, this.y, brain.current.data.alpha[3]/10+p5.random(10));
+          p5.fill(brain.current.bands.data.delta[1], brain.current.bands.data.delta[2], p5.random(255));
+          p5.circle(this.x, this.y, brain.current.bands.data.alpha[3]/10+p5.random(10));
         } else {
-          p5.fill(brain.current.data.delta[1], p5.random(255), brain.current.data.delta[2]);
-          p5.circle(this.x, this.y, brain.current.data.alpha[1]+p5.random(10));
+          p5.fill(brain.current.bands.data.delta[1], p5.random(255), brain.current.bands.data.delta[2]);
+          p5.circle(this.x, this.y, brain.current.bands.data.alpha[1]+p5.random(10));
         }      }
     }
   }

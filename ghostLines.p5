@@ -1,0 +1,64 @@
+ class MySketch extends React.Component {
+ setup(p5, whereToPlot) {
+   p5.createCanvas(600, 500).parent(whereToPlot)
+   p5.colorMode(p5.RGB,255,255,255,1);
+   p5.noFill();
+   p5.background(0);
+   border = 20;
+   offset = border;
+   
+   alphas = [.2, .4, .6, 1];
+   weights = [10, 4, 2, 1];
+   bias = [2, 3, 4, 5];
+ }
+
+ draw(p5) {
+   //p5.background(255)
+   HEIGHT = p5.height
+   WIDTH = p5.width;
+   data = brain.current.epochs.data.data[1];
+   srate = brain.current.epochs.data.info.samplingRate;
+   period = 1/srate;
+   times = [];
+   for (i = 1; i < data.length; i++) {
+     times.push(i*period);
+   }
+   
+   for (b = 1; b < alphas.length; b++) {
+     p5.stroke(255, 255, 255, alphas[b]);
+     p5.strokeWeight(weights[b]);
+     p5.beginShape();
+     if (data) {
+       for (let i=0; i< data.length; i++) {
+            xpos = p5.map(i, 0, times.length, border, WIDTH-border);
+            p5.curveVertex(xpos, data[i] /bias[b] + offset);
+        }
+      }
+     p5.endShape();
+  }
+   offset = offset + 40;
+   if (offset > HEIGHT-border) {
+    p5.noLoop();
+   }
+
+ }
+ 
+
+
+render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+        mouseClicked={this.mouseClicked}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)
+ 
+            

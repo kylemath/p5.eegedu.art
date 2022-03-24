@@ -27,43 +27,45 @@
      times.push(i*period);
    }
    
-   p5.stroke(217,95,2)
-   p5.textSize(10);
-   p5.beginShape();
-   for (let i=0; i< data.length; i++) {
-    xpos = p5.map(i, 0, times.length, 0, WIDTH);
-    p5.curveVertex(xpos, HEIGHT - data[0][i] /2 - HEIGHT/1.5 );
-    if (i % 100 === 0 || i === times.length-1) {
-      p5.stroke(0)
-      p5.text(p5.round(times[i]*1000), xpos, HEIGHT-10);
-      p5.stroke(217,95,2)
-     }
-   }
-   p5.endShape();
-   
-   p5.stroke(27,158,119)
-   p5.beginShape();
-     for (let i=0; i< data.length; i++) {
-          xpos = p5.map(i, 0, times.length, 0, WIDTH);
-          p5.curveVertex(xpos, HEIGHT - data[1][i] /2 - HEIGHT/2 );
+   if (data) {
+    p5.stroke(217,95,2)
+    p5.textSize(10);
+    p5.beginShape();
+    for (let i=0; i< data.length; i++) {
+     xpos = p5.map(i, 0, times.length, 0, WIDTH);
+     p5.curveVertex(xpos, HEIGHT - data[0][i] /2 - HEIGHT/1.5 );
+     if (i % 100 === 0 || i === times.length-1) {
+       p5.stroke(0)
+       p5.text(p5.round(times[i]*1000), xpos, HEIGHT-10);
+       p5.stroke(217,95,2)
       }
-   p5.endShape();
-   
-   p5.stroke(117,112,179)
-   p5.beginShape();
-     for (let i=0; i< data.length; i++) {
-          xpos = p5.map(i, 0, times.length, 0, WIDTH);
-          p5.curveVertex(xpos, HEIGHT - data[2][i] /2 - HEIGHT/2.5 );
-      }
-   p5.endShape();
+    }
+    p5.endShape();
 
-   p5.stroke(231,41,138)
-   p5.beginShape();
-     for (let i=0; i< data.length; i++) {
-          xpos = p5.map(i, 0, times.length, 0, WIDTH);
-          p5.curveVertex(xpos, HEIGHT - data[3][i] /2 - HEIGHT/3 );
-      }
-   p5.endShape();
+    p5.stroke(27,158,119)
+    p5.beginShape();
+      for (let i=0; i< data.length; i++) {
+           xpos = p5.map(i, 0, times.length, 0, WIDTH);
+           p5.curveVertex(xpos, HEIGHT - data[1][i] /2 - HEIGHT/2 );
+       }
+    p5.endShape();
+
+    p5.stroke(117,112,179)
+    p5.beginShape();
+      for (let i=0; i< data.length; i++) {
+           xpos = p5.map(i, 0, times.length, 0, WIDTH);
+           p5.curveVertex(xpos, HEIGHT - data[2][i] /2 - HEIGHT/2.5 );
+       }
+    p5.endShape();
+
+    p5.stroke(231,41,138)
+    p5.beginShape();
+      for (let i=0; i< data.length; i++) {
+           xpos = p5.map(i, 0, times.length, 0, WIDTH);
+           p5.curveVertex(xpos, HEIGHT - data[3][i] /2 - HEIGHT/3 );
+       }
+    p5.endShape();
+   }
 
  }
 

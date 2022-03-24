@@ -30,7 +30,7 @@
      for (let i=0; i< data.length; i++) {
           xpos = p5.map(i, 0, times.length, 0, WIDTH);
           p5.curveVertex(xpos, HEIGHT - data[i] /2 - HEIGHT/2 );
-          if (i % 10 === 0 || i === times.length-1) {
+          if (i % 50 === 0 || i === times.length-1) {
             p5.stroke(0)
             p5.text(p5.round(times[i]*1000), xpos, HEIGHT-10);
             p5.stroke(255,0,0,.01)

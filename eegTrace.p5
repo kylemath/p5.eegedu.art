@@ -1,8 +1,6 @@
-// epochs.p5 - Kyle Mathewson
-// Draw the incoming epochs overlapping on one another
-// Click to refresh background and start again
-// Notice different data location for epochs data
-// brain.current.epochs.
+// eegTrace.p5 - Kyle Mathewson
+// Draw the incoming epochs like EEG traces in common recording software
+// Goal: add controls to increase and decrease vertical scale?
 
  class MySketch extends React.Component {
  setup(p5, whereToPlot) {
@@ -15,15 +13,11 @@
    p5.background(255)
    HEIGHT = p5.height
    WIDTH = p5.width;
-   data[0] = brain.current.epochs.data.data[0];
-   data[1] = brain.current.epochs.data.data[1]
-   data[2] = brain.current.epochs.data.data[2];
-   data[3] = brain.current.epochs.data.data[3];
-
+   data = brain.current.epochs.data.data;
    srate = brain.current.epochs.data.info.samplingRate;
    period = 1/srate;
    times = [];
-   for (i = 1; i < data.length; i++) {
+   for (i = 1; i < data[0].length; i++) {
      times.push(i*period);
    }
    
@@ -31,7 +25,7 @@
     p5.stroke(217,95,2)
     p5.textSize(10);
     p5.beginShape();
-    for (let i=0; i< data.length; i++) {
+    for (let i=0; i< data[0].length; i++) {
      xpos = p5.map(i, 0, times.length, 0, WIDTH);
      p5.curveVertex(xpos, HEIGHT - data[0][i] /2 - HEIGHT/1.5 );
      if (i % 100 === 0 || i === times.length-1) {
@@ -44,7 +38,7 @@
 
     p5.stroke(27,158,119)
     p5.beginShape();
-      for (let i=0; i< data.length; i++) {
+      for (let i=0; i< data[0].length; i++) {
            xpos = p5.map(i, 0, times.length, 0, WIDTH);
            p5.curveVertex(xpos, HEIGHT - data[1][i] /2 - HEIGHT/2 );
        }
@@ -52,7 +46,7 @@
 
     p5.stroke(117,112,179)
     p5.beginShape();
-      for (let i=0; i< data.length; i++) {
+      for (let i=0; i< data[0].length; i++) {
            xpos = p5.map(i, 0, times.length, 0, WIDTH);
            p5.curveVertex(xpos, HEIGHT - data[2][i] /2 - HEIGHT/2.5 );
        }
@@ -60,7 +54,7 @@
 
     p5.stroke(231,41,138)
     p5.beginShape();
-      for (let i=0; i< data.length; i++) {
+      for (let i=0; i< data[0].length; i++) {
            xpos = p5.map(i, 0, times.length, 0, WIDTH);
            p5.curveVertex(xpos, HEIGHT - data[3][i] /2 - HEIGHT/3 );
        }

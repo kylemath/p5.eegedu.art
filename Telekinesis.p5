@@ -1,0 +1,209 @@
+class MySketch extends React.Component {
+ 
+ setup(p5, whereToPlot) {
+   p5.createCanvas(800, 720).parent(whereToPlot)
+   distractions = ["BLINK","HAHAHAHA","LOOK BEHIND YOU!"];
+   
+  score = 0;
+  highscore = 0;
+  p5.frameRate(30);
+
+ }
+
+ draw(p5) {
+
+   // You can set some useful variables
+   // to use more often like this:
+   // Notice how everything starts with p5.
+   HEIGHT = p5.height
+   WIDTH = p5.width;
+   MOUSEX = p5.mouseX;
+   MOUSEY = p5.mouseY;
+
+   // Availalable EEG Variables:
+   // Electrodes 0, 1, 2, 3
+   // Delta, Theta, Alpha, Beta, Gamma
+   // e.g.:
+   DELTA = brain.current.bands.data.delta[0]*200;
+   //THETA = brain.current.bands.data.theta[0]* 10;
+   //ALPHA = brain.current.bands.data.alpha[0]* 10;   
+   //BETA =  brain.current.bands.data.beta[0]* 10;
+   //GAMMA =  brain.current.bands.data.gamma[0]* 10;
+   
+   p5.background('#a8fcff');
+   
+  
+  
+  //texts on the screen//
+  p5.textSize(30);
+  p5.fill(p5.random(0,255),p5.random(0,255),p5.random(0,255));
+  p5.text("TELEKINESIS",250,60);
+  p5.fill('black');
+  p5.textSize(20)
+  p5.text("Focus & Levitate the Trees with your brainwaves!",140,100);
+  p5.text("!!! YOU BLINK, YOU LOSE !!!",230,140)
+  
+  letter = p5.random(distractions);
+  p5.textSize(20);
+  p5.fill(p5.random(0,255),p5.random(0,255),p5.random(0,255));
+  p5.text(letter,p5.random(10,WIDTH),p5.random(10,HEIGHT));
+  
+  
+  // draw landscape
+   
+   ///////////////////////////// LANDSCAPE //////////////////////////////
+  p5.noStroke();
+  p5.ellipseMode(p5.CENTER);
+
+  
+  
+  // scoring system for however long you can levitate
+  score++;
+  if (score > highscore){
+      highscore = score;
+  }
+  
+  
+  p5.textSize(20)
+  p5.fill("black");
+  p5.text("Score:"+score,620,40);
+  p5.text("Highest Score:"+highscore,620,60);
+  
+  
+  
+  //finding a baseline for the ground
+  
+  //Using Delta waves (associated with the deepest levels of relaxation) to control how much levitation.
+  Lvl = 600;
+  Lvl2 = DELTA - 150;  // change values to increase sensitivity/diffiulty. higher means less difficult
+  
+  // make sure doesnt go off screen
+  if (Lvl2 < 200){
+    Lvl2 = 200;
+  }
+  if (Lvl2 > 600){
+    Lvl2 = 600;
+    score = 0;
+    
+  }
+  
+
+
+  // land
+  p5.fill('#429f46');
+  p5.rect(100, Lvl, 600, 50, 25);
+
+  // river
+  p5.stroke('#4ccfe0');
+  p5.strokeWeight(20);
+  p5.beginShape();
+  p5.vertex(400, Lvl);
+  p5.bezierVertex(400 + 50, Lvl, 400 + 50, Lvl + 20, 400 - 10, Lvl + 25);
+  p5.bezierVertex(400 - 50, Lvl + 25, 400 - 60, Lvl + 40, 400, Lvl + 60);
+  p5.endShape();
+  p5.noStroke();
+
+  
+  // water
+  p5.fill('#4ccfe0');
+  p5.rect(120, Lvl + 50, 560, 60, 30);
+  p5.fill('#b1eaf1');
+  p5.rect(160, Lvl + 60, 60, 10, 5);
+  p5.rect(580, Lvl + 90, 60, 10, 5); 
+  
+  
+  // mountain right
+  p5.fill('#8c6d62');
+  p5.triangle(300, Lvl, 465, 265, 648, Lvl);
+  p5.fill('#6c4b40');
+  p5.triangle(600, Lvl, 465, 265, 648, Lvl);
+  p5.fill('#fff');
+  p5.beginShape();
+  p5.vertex(425, 345);
+  p5.vertex(465, 265);
+  p5.vertex(515, 355);
+  p5.vertex(490, 325);
+  p5.vertex(464, 343);
+  p5.vertex(454, 334);
+  p5.endShape(p5.CLOSE);
+
+  // mountain left
+  p5.fill('#8c6d62');
+  p5.triangle(152, Lvl, 285, 335, 452, Lvl);
+  p5.fill('#6c4b40');
+  p5.triangle(352, Lvl, 285, 335, 452, Lvl);
+  p5.fill('#fff');
+  p5.beginShape();
+  p5.vertex(257, 390);
+  p5.vertex(285, 335);
+  p5.vertex(314, 380);
+  p5.vertex(298, 390);
+  p5.vertex(274, 380);
+  p5.endShape(p5.CLOSE);
+
+
+  halfPi = p5.HALF_PI
+  // tree 1
+  Xtree1 = 190;
+  p5.fill('#4d332d');
+  p5.rect(Xtree1 + 0, Lvl2 + 20, 5, 20, 3);
+  p5.fill('#2d7c31');
+  p5.ellipse(Xtree1 + 3, Lvl2 - 10, 50, 70);
+  p5.fill('#1a5d1f');
+  p5.arc(Xtree1 + 2.5, Lvl2 - 10, 50, 70, -halfPi, halfPi);
+
+  // tree 2
+  Xtree2 = 300;
+  p5.fill('#4d332d');
+  p5.rect(Xtree2 + 0, Lvl2 + 5, 4, 10, 2);
+  p5.fill('#2d7c31');
+  p5.ellipse(Xtree2 + 3, Lvl2 - 20, 30, 50);
+  p5.fill('#1a5d1f');
+  p5.arc(Xtree2 + 2.5, Lvl2 - 20, 30, 50, -halfPi, halfPi);
+  
+  
+  
+
+  // tree 3
+  Xtree3 = 550;
+  p5.fill('#4d332d');
+  p5.rect(Xtree3 + 0, Lvl2 + 10, 5, 20, 3);
+  p5.fill('#2d7c31');
+  p5.ellipse(Xtree3 + 3, Lvl2 - 20, 50, 70);
+  p5.fill('#1a5d1f');
+  p5.arc(Xtree3 + 2.5, Lvl2 - 20, 50, 70, -halfPi, halfPi);
+
+      
+ }
+
+
+
+//deprecated function
+//keyPressed() {
+  //console.log(p5.keyCode)
+  //if (p5.keyCode === letter) {
+    //letter = p5.random(letters);
+    //console.log('yes')
+ // } 
+ // console.log('yesn')
+//}
+
+
+
+
+
+ render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+        keyPressed={this.keyPressed}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)                                                                 

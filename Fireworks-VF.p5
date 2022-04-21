@@ -1,0 +1,73 @@
+let Fireworks;
+let myFireworks = [];
+f=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+
+class MySketch extends React.Component {
+ setup(p5, whereToPlot) {
+     p5.createCanvas(600,350).parent(whereToPlot)
+     p5.background(0)  
+     posX=0;
+     posY=0;
+     brushWidth= 25;
+     p5.noStroke();      
+     
+   class Fireworks {
+    constructor(x,y,d) {
+      this.x =posX
+      this.y =posY;
+      this.d= brushWidth
+      } 
+    move() {    
+      for(let f = 0; f < myFireworks.length; f++){   
+        this.y= PosY-25
+        if (posY <= 50){
+         posY=300;       
+          }
+        }
+      }
+    display() {   
+     for(let f = 0; f < myFireworks.length; f++) {
+       p5.fill (THETA,DELTA,BETA); 
+       p5.circle(posX,posY,brushWidth);
+          }
+        }
+    }
+ 
+   myFireworks[0] = new Fireworks(posX,posY,brushWidth)
+}
+ 
+
+ draw(p5) {
+    MOUSEX = p5.mouseX;
+   MOUSEY= p5.mouseY;
+   
+   DELTA = brain.current.bands.data.delta[0] * 35
+   THETA = brain.current.bands.data.theta[3] * 40
+   ALPHA = brain.current.bands.data.alpha[2] * 50
+   BETA =  brain.current.bands.data.beta[3]  * 50
+   GAMMA =brain.current.bands.data.gamma[0]  * 25
+   
+   posX= ALPHA
+   posY= GAMMA
+   for(let f=0;f<myFireworks.length; f++){
+     myFireworks[f].display(); 
+     p5.fill (THETA,DELTA,BETA,150); 
+     p5.circle(posX,posY,brushWidth);
+   }
+}
+
+render(){
+  return (
+    <Sketch
+      setup={this.setup}
+      draw={this.draw}
+     // mousePressed={this.mousePressed}
+    />
+   )
+  }
+  
+}   
+
+render (
+ <MySketch />
+)    

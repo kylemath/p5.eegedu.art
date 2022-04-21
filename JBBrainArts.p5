@@ -1,0 +1,66 @@
+class MySketch extends React.Component {
+ setup(p5, whereToPlot) {
+   p5.createCanvas(500, 500).parent(whereToPlot)
+   p5.background(200,200,200);
+
+ }
+
+ draw(p5) {
+
+   HEIGHT = p5.height
+   WIDTH = p5.width;
+   MOUSEX = p5.mouseX;
+   MOUSEY = p5.mouseY;
+
+   DELTA = brain.current.bands.data.delta[0];
+   THETA = brain.current.bands.data.theta[0];
+   ALPHA = brain.current.bands.data.alpha[0];   
+   BETA =  brain.current.bands.data.beta[0];
+   GAMMA = brain.current.bands.data.gamma[0];
+   
+   p5.fill(300, 40, 100);
+   p5.ellipse(MOUSEX, MOUSEY, DELTA/2);
+   p5.text("Delta", MOUSEX, MOUSEY+DELTA);
+   
+   p5.fill(20, 200, 255);
+   p5.ellipse(MOUSEX+120, MOUSEY, THETA);
+   p5.text("Theta", MOUSEX+120, MOUSEY+THETA)
+   
+   p5.fill(40, 30, 200);
+   p5.ellipse(MOUSEX-120, MOUSEY, ALPHA);
+   p5.text ("Alpha", MOUSEX-120, MOUSEY+ALPHA)
+ 
+   p5.fill(150, 300, 200);
+   p5.ellipse(MOUSEX-60, MOUSEY, BETA);
+   p5.text ("Beta", MOUSEX-60, MOUSEY+BETA)
+   
+   p5.fill(255, 255, 0);
+   p5.ellipse(MOUSEX+60, MOUSEY, GAMMA);
+   p5.text ("Gamma", MOUSEX+60, MOUSEY+GAMMA)
+   
+;   
+ }
+
+ mouseClicked(p5) {
+   if (value === 0) {
+     value = 255;
+     } else {
+     value = 0;
+     }
+ }
+
+ render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+        mouseClicked={this.mouseClicked}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+) 

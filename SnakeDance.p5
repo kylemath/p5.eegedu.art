@@ -1,0 +1,335 @@
+// BasicFrequencyBands.p5 - Ky Mathewson
+// Demonstration of text and animation with frequency bands
+
+class MySketch extends React.Component {
+ setup(p5, whereToPlot) {
+   p5.createCanvas(600, 600).parent(whereToPlot)
+   p5.frameRate(10);
+      
+   // Create color sets
+   let colorSet1 = [[214, 41, 0], [150, 39, 12], [250, 93, 55]];
+   let colorSet2 = [[255, 155, 85], [232, 130, 58], [255, 191, 145]];
+   let colorSet3 = [[232, 223, 216], [207, 191, 180], [245, 238, 233]];
+   let colorSet4 = [[212, 97, 166], [173, 62, 129], [227, 118, 184]];
+   let colorSet5 = [[165, 0, 98], [112, 0, 67], [214, 9, 131]];
+   
+   // Snake class
+   class Snake {
+     constructor(x, y, length, width, colorset) {
+        this.x = x;
+        this.y = y;
+        this.length = length;
+        this.width = width;
+        this.colorset = colorset;
+      }
+      
+      // Set the length of the snake
+      setSnakeLength(length) {
+        this.length = length;
+      }
+      
+      // Draw snake body
+      drawSnakeBody() {
+        // If frequenc is zero, exit to avoid error
+        if (this.length == 0) {
+          return;
+        }
+        
+        // Outer snake body
+        p5.fill(this.colorset[0][0], this.colorset[0][1], this.colorset[0][2]);
+        p5.beginShape();
+        let quarter = this.length / 4;
+        let halfw = this.width / 2;
+        p5.curveVertex(this.x - halfw, this.y);
+        p5.curveVertex(this.x - halfw, this.y);
+        p5.curveVertex(this.x - 5 - halfw, this.y - quarter)
+        p5.curveVertex(this.x - halfw, this.y - 2*quarter);
+        p5.curveVertex(this.x + 5 - halfw, this.y - 3*quarter);
+        p5.curveVertex(this.x - halfw, this.y - this.length);
+        p5.curveVertex(this.x + halfw, this.y - this.length);
+        p5.curveVertex(this.x + 5 + halfw, this.y - 3*quarter);
+        p5.curveVertex(this.x + halfw, this.y - 2*quarter);
+        p5.curveVertex(this.x - 5 + halfw, this.y - quarter);
+        p5.curveVertex(this.x + halfw, this.y);
+        p5.curveVertex(this.x - halfw, this.y);
+        p5.endShape();
+        
+        // Inner snake body
+        p5.fill(this.colorset[1][0], this.colorset[1][1], this.colorset[1][2]);
+        p5.beginShape();
+        let thirdw = this.width / 4;
+        p5.curveVertex(this.x - thirdw, this.y);
+        p5.curveVertex(this.x - thirdw, this.y);
+        p5.curveVertex(this.x - 5 - thirdw, this.y - quarter)
+        p5.curveVertex(this.x - thirdw, this.y - 2*quarter);
+        p5.curveVertex(this.x + 5 - thirdw, this.y - 3*quarter);
+        p5.curveVertex(this.x - thirdw, this.y - this.length);
+        p5.curveVertex(this.x + thirdw, this.y - this.length);
+        p5.curveVertex(this.x + 5 + thirdw, this.y - 3*quarter);
+        p5.curveVertex(this.x + thirdw, this.y - 2*quarter);
+        p5.curveVertex(this.x - 5 + thirdw, this.y - quarter);
+        p5.curveVertex(this.x + thirdw, this.y);
+        p5.curveVertex(this.x - thirdw, this.y);
+        p5.endShape();
+      }
+      drawSnake() {
+        // Tail
+        p5.fill(this.colorset[0][0], this.colorset[0][1], this.colorset[0][2])
+        p5.beginShape();
+        p5.curveVertex(this.x, this.y);
+        p5.curveVertex(this.x, this.y);
+        p5.curveVertex(this.x + 10, this.y - 10);
+        p5.curveVertex(this.x + 35, this.y - 20);
+        p5.curveVertex(this.x + 55, this.y - 30);
+        p5.curveVertex(this.x + 45, this.y - 60);
+        p5.curveVertex(this.x + 65, this.y - 25);
+        p5.curveVertex(this.x + 50, this.y - 15);
+        p5.curveVertex(this.x + 10, this.y - 5);
+        p5.curveVertex(this.x, this.y);
+        p5.curveVertex(this.x, this.y);
+        p5.endShape();
+        
+        // Body
+        p5.fill(this.colorset[1][0], this.colorset[1][1], this.colorset[1][2]);
+        p5.ellipse(this.x, this.y, 100, 20);
+        p5.fill(this.colorset[0][0], this.colorset[0][1], this.colorset[0][2])
+        p5.ellipse(this.x, this.y - 10, 90, 20);
+        
+         // Back of head
+        p5.fill(this.colorset[1][0], this.colorset[1][1], this.colorset[1][2]);
+        p5.circle(this.x, this.y - this.length - 12, 15);
+        p5.ellipse(this.x, this.y - this.length + 5, 30, 10);
+        p5.ellipse(this.x - 7, this.y - this.length - 10, 20, 40);
+        p5.ellipse(this.x + 7, this.y - this.length - 10, 20, 40);
+        
+        // Eye whites
+        p5.fill('white');
+        p5.ellipse(this.x - 7, this.y - this.length - 10, 10, 25);
+        p5.ellipse(this.x + 7, this.y - this.length - 10, 10, 25);
+        
+        // pupils
+        p5.fill('black');
+        p5.circle(this.x - 7, this.y - this.length - 12, 3);
+        p5.circle(this.x + 7, this.y - this.length - 12, 3);
+        p5.fill('white');
+        p5.circle(this.x - 8, this.y - this.length - 12, 1);
+        p5.circle(this.x + 8, this.y - this.length - 12, 1);
+        
+        // Mouth
+        p5.fill(this.colorset[2][0], this.colorset[2][1], this.colorset[2][2]);
+
+        p5.ellipse(this.x, this.y - this.length, 30, 15);
+        p5.circle(this.x - 15, this.y - this.length, 7);
+        p5.circle(this.x + 15, this.y - this.length, 7);
+        
+        // Toungue
+        p5.fill('red');
+        p5.rect(this.x - 2, this.y - this.length + 2, 4, 10);
+        p5.triangle(this.x - 2, this.y - this.length + 12, this.x - 1, this.y - this.length + 18, this.x, this.y - this.length + 12);
+        p5.triangle(this.x + 2, this.y - this.length + 12, this.x + 1, this.y - this.length + 18, this.x, this.y - this.length + 12);
+      
+        // Mouth line
+        p5.noFill();
+        p5.stroke(0);
+        p5.beginShape();
+        p5.curveVertex(this.x - 18, this.y - this.length)
+        p5.curveVertex(this.x - 18, this.y - this.length)
+        p5.curveVertex(this.x - 13, this.y - this.length + 5);
+        p5.curveVertex(this.x, this.y - this.length + 2);
+        p5.curveVertex(this.x + 13, this.y - this.length + 5);
+        p5.curveVertex(this.x + 18, this.y - this.length);
+        p5.curveVertex(this.x + 18, this.y - this.length);
+        p5.endShape();
+        
+        // Nostrils
+        p5.noStroke()
+        p5.fill('black');
+        p5.ellipse(this.x - 5, this.y - this.length - 2, 3, 5);
+        p5.ellipse(this.x + 5, this.y - this.length - 2, 3, 5);
+      }
+  }
+  
+    // Music note object class
+    class MusicNote {
+    constructor(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.color = color;
+    }
+    
+    // Draw music note
+    drawNote() {
+      p5.fill(this.color[0], this.color[1], this.color[2]);
+      p5.ellipse(this.x, this.y, 10, 5);
+      p5.rect(this.x + 2, this.y - 15, 2, 15);
+      p5.rect(this.x + 2, this.y - 15, 15, 5);
+      p5.rect(this.x + 17, this.y - 15, 2, 15);
+      p5.ellipse(this.x + 14, this.y, 10, 5);
+    }
+    
+    // Move music note right
+    moveNote() {
+      this.x = this.x + 2;
+    }
+  }
+  
+  // Initialize array to store display notes
+  displayNotesArray= [];
+  // Initialize snakes
+   deltaSnake = new Snake(100, 400, 150, 20, colorSet1);
+   thetaSnake = new Snake(200, 400, 150, 30, colorSet2);
+   alphaSnake = new Snake(300, 400, 150, 10, colorSet3);
+   betaSnake = new Snake(400, 400, 150, 40, colorSet4);
+   gammaSnake = new Snake(500, 400, 150, 15, colorSet5);
+   
+   // Prepopulate note storage arrays
+   deltaNotesStorage = []
+   thetaNotesStorage = []
+   alphaNotesStorage =[];
+   betaNotesStorage = [];
+   gammaNotesStorage = [];
+   
+    for (i = 0; i < 1000; i++) {
+      let deltaNote = new MusicNote(450, 70, [214, 41, 0]);
+      let thetaNote = new MusicNote(450, 70, [255, 155, 85]);
+      let alphaNote = new MusicNote(450, 70, [255, 255, 255]);
+      let betaNote = new MusicNote(450, 70, [212, 97, 166]);
+      let gammaNote = new MusicNote(450, 70, [165, 0, 98]);
+      
+      deltaNotesStorage.push(deltaNote);
+      thetaNotesStorage.push(thetaNote);
+      alphaNotesStorage.push(alphaNote);
+      betaNotesStorage.push(betaNote);
+      gammaNotesStorage.push(gammaNote);
+    }
+ }
+
+ draw(p5) {
+   p5.background(242, 227, 179);
+
+   // You can set some useful variables
+   // to use more often like this:
+   // Notice how everything starts with p5.
+   HEIGHT = p5.height
+   WIDTH = p5.width;
+   MOUSEX = p5.mouseX;
+   MOUSEY = p5.mouseY;
+
+   // Availalable EEG Variables:
+   // Electrodes 0, 1, 2, 3
+   // Delta, Theta, Alpha, Beta, Gamma
+   // e.g.:
+   DELTA = brain.current.bands.data.delta[0] * 10;
+   THETA = brain.current.bands.data.theta[0]* 10;
+   ALPHA = brain.current.bands.data.alpha[0]* 10;   
+   BETA =  brain.current.bands.data.beta[0]* 10;
+   GAMMA =  brain.current.bands.data.gamma[0]* 10;
+   
+   // Draw snakes
+   deltaSnake.drawSnakeBody();
+   deltaSnake.drawSnake();
+   
+   thetaSnake.drawSnakeBody();
+   thetaSnake.drawSnake();
+   
+   alphaSnake.drawSnakeBody();
+   alphaSnake.drawSnake();
+   
+   betaSnake.drawSnakeBody();
+   betaSnake.drawSnake();
+   
+   gammaSnake.drawSnakeBody();
+   gammaSnake.drawSnake();
+
+  // Set snake length depending on wave
+   deltaSnake.setSnakeLength(DELTA * 5);
+   thetaSnake.setSnakeLength(THETA* 5);
+   alphaSnake.setSnakeLength(ALPHA* 5);
+   betaSnake.setSnakeLength(BETA* 5);
+   gammaSnake.setSnakeLength(GAMMA* 5);
+   
+   // Delta text
+   p5.textSize(20);
+   p5.fill(214, 41, 0);
+   p5.text('DELTA', 65, 450);
+   
+   // Theta text
+   p5.fill(255, 155, 85);
+   p5.text('THETA', 165, 450);
+   
+   // Alpha text
+   p5.fill('white');
+   p5.text('ALPHA', 270, 450);
+   
+   // Beta text
+   p5.fill(212, 97, 166);
+   p5.text('BETA', 375, 450);
+   
+   // Gamma text
+   p5.fill(165, 0, 98);
+   p5.text('GAMMA', 460, 450);
+   
+   // Flute
+   let fluteLength = 450;
+   let fluteColorSet = [[150, 39, 12], [232, 130, 58], [207, 191, 180], [173, 62, 129], [112, 0, 67]]
+  
+    p5.fill(232, 208, 142);
+    p5.rect(0, 40, fluteLength, 40);
+    p5.fill(242, 218, 153);
+    p5.rect(0, 40, 450, 20)
+    for (i = 0; i < 5; i++) {
+      p5.fill(224, 185, 121);
+      p5.ellipse(fluteLength / 6 + (i/6)*fluteLength, 50, 30, 15);
+      p5.fill(fluteColorSet[i][0], fluteColorSet[i][1], fluteColorSet[i][2]);
+      p5.ellipse(fluteLength / 6 + (i/6)*fluteLength, 52, 25, 10);
+    }
+  
+    p5.fill(224, 185, 121);
+    p5.circle(450, 60, 20);
+    p5.fill(128, 100, 56);
+    p5.circle(450, 60, 15);
+    
+    // Display a note if each wave passes certain threshold
+    if (DELTA*5 >= 250) {
+      displayNotesArray.push(deltaNotesStorage.pop());
+    }
+    
+    if (THETA*5 >= 250) {
+      displayNotesArray.push(thetaNotesStorage.pop());
+    }
+    
+    if (ALPHA*5 >= 250) {
+      displayNotesArray.push(alphaNotesStorage.pop());
+    }
+    
+    if (BETA*5 >= 250) {
+      displayNotesArray.push(betaNotesStorage.pop());
+    }
+    
+    if (GAMMA*5 >= 250) {
+      displayNotesArray.push(gammaNotesStorage.pop());
+    }
+    
+    // Display all notes availble
+    for (i = 0; i< displayNotesArray.length; i++) {
+      displayNotesArray[i].drawNote();
+      displayNotesArray[i].moveNote();
+    }
+ }
+ 
+ render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)
+
+                   

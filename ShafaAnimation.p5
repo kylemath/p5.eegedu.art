@@ -1,0 +1,97 @@
+let headwidth = 150 ;
+class MySketch extends React.Component {
+ setup(p5, whereToPlot) {
+   p5.createCanvas(400, 400).parent(whereToPlot)
+   p5.rectMode(p5.CENTER)
+   p5.frameRate(15)
+   
+ }
+
+draw(p5) {
+ 
+  let smilewidth = 50
+  let center = p5.width/2
+ 
+  
+  let eyeX = center - p5.width/6
+  let eyewidth = 50
+  let eyeY = center - p5.width/6
+  let blinkcolour = p5.createVector ('yello','black')
+  let blink = p5.random()
+  
+ 
+  
+  p5.background('black');
+  
+  p5.fill('yellow');
+  p5.circle(center, center, headwidth);
+  headwidth = headwidth + brain.current.bands.data.beta[1] - brain.current.bands.data.delta[1]
+  
+   
+  
+     if (headwidth >= 151) {
+      p5.frameRate(15)
+    }
+  
+    
+  
+  //mouth
+  p5.fill('black');
+  p5.circle(center, center + 20, 100 );
+  
+  
+  //mouth cover
+  p5.noStroke();
+  p5.fill('yellow');
+  p5.rect(center, 169, 210,150);
+  
+  //text
+   p5.fill(61, 142, 224);
+   p5.textSize(20)
+   p5.text('Stay calm, otherwise he might explode!', 30, 22)
+  
+   //left eye
+  p5.fill(p5.random(0, 256), p5.random(0, 256), p5.random(0, 256));
+  p5.circle(134,eyeY,20);
+  
+  //right eye
+   p5.circle(eyeX + p5.width*.34,eyeY,20);
+   
+   if (headwidth < 151) {
+      headwidth = 150
+    }
+  
+   
+ if (headwidth >= 283 ) {
+    p5.fill(209, 21, 21)
+    p5.rect(center, 167, 400, 500);
+    p5.fill(0,0,0)
+    p5.textSize(50)
+    p5.text('GameOver :(',p5.width/6, p5.width/2)
+    p5.frameRate(1)
+    headwidth = 150
+    
+    
+
+  
+  }
+}
+ render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+        mouseClicked={this.mouseClicked}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)
+
+      
+           
+ 

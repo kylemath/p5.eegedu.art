@@ -1,0 +1,162 @@
+// MultipleBalls.p5 - Ky Mathewson
+// Another class examle with more balls
+
+class MySketch extends React.Component {
+ setup(p5, whereToPlot) {
+  p5.createCanvas(1000,500).parent(whereToPlot)
+  p5.background(30,200,30)
+  p5.rectMode(p5.RADIUS);
+  skyDarkening = 0
+    Truck = []
+    for (var i = 0; i < 1; i++) {
+    Truck[i] = new truck();
+    }
+  Rain = []
+    for (var i = 0; i < 800 ; i++) {
+    Rain[i] = new rainDrop();
+    }
+    function truck(){
+      this.x = p5.width
+      this.y = p5.height*0.63
+    
+    this.display = function(){
+        p5.fill(220-(skyDarkening/2),0,0)
+        p5.triangle(this.x-8,this.y-24,this.x-17,this.y-8,this.x-8,this.y-8)
+        p5.rect(this.x+1,this.y-12,9,12)
+        p5.fill(180-(skyDarkening/2),180-(skyDarkening/2),240-(skyDarkening/2))
+        p5.triangle(this.x-6.5,this.y-20,this.x-13,this.y-8,this.x-6.5,this.y-8)
+        p5.rect(this.x,this.y-12,7,7)
+        p5.fill(220-(skyDarkening/2),0,0)
+        p5.rect(this.x,this.y,35,8)
+        p5.fill(20-(skyDarkening/2),20-(skyDarkening/2),20-(skyDarkening/2))
+        p5.circle(this.x+17,this.y+8,7)
+        p5.fill(180-(skyDarkening/2),180-(skyDarkening/2),180-(skyDarkening/2))
+        p5.circle(this.x+17,this.y+8,5)
+        p5.fill(20-(skyDarkening/2),20-(skyDarkening/2),20-(skyDarkening/2))
+        p5.circle(this.x-19,this.y+8,7)
+        p5.fill(180-(skyDarkening/2),180-(skyDarkening/2),180-(skyDarkening/2))
+        p5.circle(this.x-19,this.y+8,5)
+        }
+        this.move = function() {
+          if (this.x >= p5.width) {
+            this.x = this.x - 2
+            }
+          else {
+          this.x = this.x - 2 + alpha/2
+    }
+          if (this.x < 0){
+            this.x = p5.width
+    }
+    }
+    }
+   function rainDrop(){
+     this.x = p5.random(-p5.width,p5.width);
+     this.y = p5.random(0,-p5.height);
+     this.ySpeed
+     this.xSpeed
+  
+
+   this.display = function(){
+     rainSize = 2 
+      p5.fill(100,100,200);
+      p5.ellipse(this.x,this.y,4,rainSize*3);
+      p5.fill(200,200,230);
+      p5.ellipse(this.x,this.y,3,rainSize*2);
+}
+
+   this.move = function() {
+       this.y = (this.y + p5.random(4,10))*1.01;
+       this.x = this.x + p5.random(2,5) + alpha
+    
+        if (this.y > p5.height) {
+          this.y = 0;
+          this.x = p5.random(-p5.width/2,p5.width)
+          }
+       if (this.x > p5.width) {
+           this.x = -p5.width/2
+          }
+          }
+          }
+  Clouds = []
+    for (var i = 0; i < 300 ; i++) {
+    Clouds[i] = new cloud();
+    }
+    function cloud(){
+     this.x = p5.random(-p5.width,p5.width);
+     this.y = p5.random(0-30);
+     cloudSize = p5.random(100,200)
+ 
+   this.display = function(){
+      p5.fill(220-skyDarkening,220-skyDarkening,220-skyDarkening,50);
+      p5.ellipse(this.x,this.y,cloudSize,cloudSize);
+    
+}
+
+   this.move = function() {
+       this.x = this.x + alpha/4
+        if (this.x > p5.width) {
+           this.x = -p5.width/2
+          }}
+}
+
+}
+
+draw(p5) {
+p5.noStroke()
+
+  // Sky
+  alpha = brain.current.bands.data.alpha[0]
+   skyDarkening = alpha
+  
+ for ( i = 0; i <= 15; i++){
+    gradSky = i*i
+    p5.fill(180-skyDarkening-(gradSky/6),180-skyDarkening-(gradSky/6),255-skyDarkening)
+    p5.rect(p5.width/2,p5.height,p5.width,p5.height*(1-(i*5)/130))
+ }
+ 
+ 
+ for ( i = 1; i <= 25; i++){
+    gradLeft = i*i
+    p5.fill(0,180-((gradLeft/8))-(skyDarkening/2),0)
+    p5.rect(p5.width/2,p5.height,p5.width,p5.height/2-(gradLeft*0.4))
+    }
+for ( i = 1; i <= 10; i++){
+    gradRoad = i
+    p5.fill(160-((gradRoad*5))-(skyDarkening/2),160-((gradRoad*5))-(skyDarkening/2),160-((gradRoad*5))-(skyDarkening/2))
+    p5.rect(p5.width/2,p5.height*6.8/10+((p5.height/100)*gradRoad),p5.width,(p5.height/10)-((p5.height/100)*gradRoad))
+ }
+ 
+ for ( i = 1; i <= 26; i++){
+    roadLines = i
+    p5.fill(220-(skyDarkening/2),210-(skyDarkening/2),100-(skyDarkening/2),175)
+    p5.rect(0-p5.width/28+(roadLines*(p5.width/28)),p5.height*(61.5/90),p5.width/100,p5.height/400)
+}
+ for (var i = 0; i < Truck.length; i++) {
+ Truck[i].display();
+ Truck[i].move();
+ }
+// Rain drop function
+  for (var i = 0; i < Rain.length; i++) {
+ Rain[i].display();
+ Rain[i].move();
+ }
+  for (var i = 0; i < Clouds.length; i++) {
+ Clouds[i].display();
+ Clouds[i].move();
+  }
+ }
+ render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)
+                                                                                                                                                                                                                                                      

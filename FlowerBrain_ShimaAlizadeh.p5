@@ -1,0 +1,86 @@
+//Shima Rastgar
+//FINAL PROJECT
+//PSYC 403
+
+
+let FlowerElipse = [6];
+
+class MySketch extends React.Component {
+ setup(p5, whereToPlot) {
+  p5.createCanvas(700, 700).parent(whereToPlot)
+
+
+ }
+
+ draw(p5) {
+   DELTA = brain.current.bands.data.delta[0] * 15;
+   THETA = brain.current.bands.data.theta[3]* 10;
+   ALPHA = brain.current.bands.data.alpha[2]* 8;
+   BETA =  brain.current.bands.data.beta[1]* 10;
+   GAMMA =  brain.current.bands.data.gamma[1]*10;
+
+ // Drawing a flower based off your ALPHA Waves (size) and color based off ALPHA, BETA, and GAMMA waves
+  p5.fill(ALPHA*4,BETA,GAMMA)
+  FlowerElipse[1] = p5.ellipse(p5.mouseX-40,p5.mouseY,ALPHA)
+  FlowerElipse[2] = p5.ellipse(p5.mouseX+40,p5.mouseY,ALPHA)
+  FlowerElipse[3] = p5.ellipse(p5.mouseX,p5.mouseY-40,ALPHA)
+  FlowerElipse[4] = p5.ellipse(p5.mouseX,p5.mouseY+40,ALPHA)
+
+  //Colour of stem is diffirent than petals
+  p5.fill(ALPHA*2,DELTA,DELTA)
+  FlowerElipse[5] = p5.ellipse(p5.mouseX,p5.mouseY,ALPHA)
+
+  //Mountains
+  p5.fill(128,128,128)
+  p5.triangle(200, 500, 600, 500, 400, 200);
+  p5.fill(0,128,128)
+  p5.triangle(400, 500, 600, 500, 500, 300);
+
+  //Left portion of tree (three vertical blobs + stem)
+  p5.fill(165,42,42);
+  p5.rect(50,300,10,200);//Branch
+  p5.fill(0,255,0);//Bush*3
+  p5.ellipse(56,310,70,70);
+  p5.fill(0,255,0);
+  p5.ellipse(56,375,70,70);
+  p5.fill(0,255,0);
+  p5.ellipse(56,435,70,70);
+
+  //Right portion of tree (other 3 vertical blobs + stem)
+  p5.fill(165,42,42);
+  p5.rect(100,300,10,200);//Branch
+  p5.fill(0,255,0);//Bush*3
+  p5.ellipse(105,310,70,70);
+  p5.fill(0,255,0);
+  p5.ellipse(105,375,70,70);
+  p5.fill(0,255,0);
+  p5.ellipse(105,435,70,70);
+
+ }
+mouseClicked(p5) {
+   p5.background(DELTA,DELTA*3,ALPHA)
+   if (clickValue === 0) {
+     clickValue = 255;
+
+     } else {
+     clickValue = 0;
+     }
+ }
+
+//Click the screen to refresh the page and set the colour according to your BETA waves!
+ render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+        mouseClicked={this.mouseClicked}
+
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)

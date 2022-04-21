@@ -1,0 +1,174 @@
+
+
+class MySketch extends React.Component {
+ setup(p5, whereToPlot) {
+   p5.createCanvas(500, 700).parent(whereToPlot)
+ }
+
+ draw(p5) {
+   p5.background(0);
+p5.stroke(0) 
+p5.strokeWeight(1)
+ //DELTA  
+p5.fill (0,0,255)
+p5.rect(0,0,25,DELTA0)
+
+p5.fill (0,255,0)
+p5.rect(25,0,25,DELTA1)
+
+p5.fill (255,0,0)
+p5.rect(50,0,25,DELTA2)
+
+p5.fill (255,255,0)
+p5.rect(75,0,25,DELTA3)
+
+//THETA
+p5.fill (0,0,255)
+p5.rect(100,0,25,THETA0)
+
+p5.fill (0,255,0)
+p5.rect(125,0,25,THETA1)
+
+p5.fill (255,0,0)
+p5.rect(150,0,25,THETA2)
+
+p5.fill (255,255,0)
+p5.rect(175,0,25,THETA3)
+
+//ALPHA
+
+p5.fill (0,0,255)
+p5.rect(200,0,25,ALPHA0)
+
+p5.fill (0,255,0)
+p5.rect(225,0,25,ALPHA1)
+
+p5.fill (255,0,0)
+p5.rect(250,0,25,ALPHA2)
+
+p5.fill (255,255,0)
+p5.rect(275,0,25,ALPHA3)
+
+//BETA
+
+p5.fill (0,0,255)
+p5.rect(300,0,25,BETA0)
+
+p5.fill (0,255,0)
+p5.rect(325,0,25,BETA1)
+
+p5.fill (255,0,0)
+p5.rect(350,0,25,BETA2)
+
+p5.fill (255,255,0)
+p5.rect(375,0,25,BETA3)
+
+//GAMMA
+
+p5.fill (0,0,255)
+p5.rect(400,0,25,GAMMA0)
+
+p5.fill (0,255,0)
+p5.rect(425,0,25,GAMMA1)
+
+p5.fill (255,0,0)
+p5.rect(450,0,25,GAMMA2)
+
+p5.fill (255,255,0)
+p5.rect(475,0,25,GAMMA3)
+
+//LINES
+p5.strokeWeight(2)
+p5.stroke(255)
+p5.line(100,0,100,550)
+p5.line(200,0,200,550)
+p5.line(300,0,300,550)
+p5.line(400,0,400,550)
+p5.line(0,550,500,550)
+
+//LABELS
+p5.stroke(0)
+p5.fill(255)
+p5.text('DELTA',25,500)
+p5.text('THETA',125,500)
+p5.text('ALPHA',225,500)
+p5.text('BETA',325,500)
+p5.text('GAMMA',425,500)
+
+//LEGEND
+p5.stroke(0)
+p5.fill(0,0,255)
+p5.text('ELECTRODE 0',125,575)
+p5.rect(25,565,15,15)
+
+p5.fill(0,255,0)
+p5.text('ELECTRODE 1',125,610)
+p5.rect(25,600,15,15)
+
+p5.fill(255,0,0)
+p5.text('ELECTRODE 2',125,645)
+p5.rect(25,635,15,15)
+
+p5.fill(255,255,0)
+p5.text('ELECTRODE 3',125,680)
+p5.rect(25,670,15,15)
+
+
+
+
+
+
+  //VARIABLES
+   HEIGHT = p5.height
+   WIDTH = p5.width;
+   MOUSEX = p5.mouseX;
+   MOUSEY = p5.mouseY;
+
+   DELTA0 = brain.current.bands.data.delta[0] * 100;
+   THETA0 = brain.current.bands.data.theta[0]* 100;
+   ALPHA0 = brain.current.bands.data.alpha[0]* 100;   
+   BETA0 =  brain.current.bands.data.beta[0]* 100;
+   GAMMA0 = brain.current.bands.data.gamma[0]* 100;
+   
+   DELTA1 = brain.current.bands.data.delta[1] * 100;
+   THETA1 = brain.current.bands.data.theta[1]* 100;
+   ALPHA1 = brain.current.bands.data.alpha[1]* 100;   
+   BETA1 =  brain.current.bands.data.beta[1]* 100;
+   GAMMA1 = brain.current.bands.data.gamma[1]* 100;
+   
+   DELTA2 = brain.current.bands.data.delta[2] * 100;
+   THETA2 = brain.current.bands.data.theta[2]* 100;
+   ALPHA2 = brain.current.bands.data.alpha[2]* 100;   
+   BETA2 =  brain.current.bands.data.beta[2]* 100;
+   GAMMA2 = brain.current.bands.data.gamma[2]* 100;
+   
+   DELTA3 = brain.current.bands.data.delta[3] * 100;
+   THETA3 = brain.current.bands.data.theta[3]* 100;
+   ALPHA3 = brain.current.bands.data.alpha[3]* 100;   
+   BETA3 =  brain.current.bands.data.beta[3]* 100;
+   GAMMA3 = brain.current.bands.data.gamma[3]* 100;
+   
+   
+
+ }
+
+ // other p5 functions can be created like this
+ // but must be included below in the return call
+
+
+ render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)
+
+  

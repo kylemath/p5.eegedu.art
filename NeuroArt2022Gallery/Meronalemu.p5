@@ -1,0 +1,64 @@
+// BasicFrequencyBands.p5 - Meron Alemu
+//Take a QUICK AND DEEP breath and EXHALE for the sunrise to turn the sky and surrounding from night to day!!! 
+
+   let sunrise = [];
+class MySketch extends React.Component {
+ setup(p5, whereToPlot) {
+   p5.createCanvas(500, 500).parent(whereToPlot)
+ }
+
+ draw(p5) {
+   p5.background(10,ALPHA,200);
+
+
+   HEIGHT = p5.height
+   WIDTH = p5.width;
+   MOUSEX = p5.mouseX;
+   MOUSEY = p5.mouseY;
+
+   DELTA = brain.current.bands.data.delta[0]* 10;
+   THETA = brain.current.bands.data.theta[0]* 10;
+   ALPHA = brain.current.bands.data.alpha[0]* 10;   
+   BETA =  brain.current.bands.data.beta[0]* 10;
+   GAMMA =  brain.current.bands.data.gamma[0]* 10;
+   
+   gap = (DELTA + THETA + ALPHA + BETA + GAMMA)/5;
+   
+   sunrise[1]= p5.arc(250, 350, 280, 270, p5.PI, p5.TWO_PI);
+   p5.rect(10,170,80,100)
+   p5.fill(150,100,250)
+   
+   p5.triangle(10,173,47,100,95,173)
+   p5.fill(150,BETA,120)
+   
+   p5.rect(30,210,40,60)
+   p5.fill(255,200,20)
+
+   sunrise[2]=p5.arc(250,320,180,170,p5.PI,p5.TWO_PI);
+   p5.fill(255,255,250)
+
+   p5.fill (50,GAMMA,ALPHA)
+   p5.rect(0,270,500,500)
+   p5.fill(255,250,100)
+
+      
+ }
+
+ render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)
+
+
+
+      

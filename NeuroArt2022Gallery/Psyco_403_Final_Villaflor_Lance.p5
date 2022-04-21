@@ -1,0 +1,80 @@
+//Assignment is inspired by Daniel Shiffman's 3D Terrian Generation With Perlin Noise In Processing Coding Challenge 1. Adapted for PSYCO 403 Final Project by Lance Villaflor with permission of Prof.Kyle Mathewson.
+//Psyco 403 Final - 3D Terrain Generation Using Perlin Noise and Delta EEG Data by Lance Villaflor
+var cols, DELTA;
+var scl = 20;
+var w = 1400;
+var h = 700; //no less than 50
+let color_Codes = ["#4f5bdb", "#66cdaa", "#00a4b2", "#be149a"];
+let random_Color;
+
+var flying = 0;
+
+var terrain = [];
+
+class MySketch extends React.Component {
+
+ setup(p5, whereToPlot) {
+  p5.createCanvas(1000, 1000, p5.WEBGL).parent(whereToPlot); //try 1000,1000 dimensions
+ 
+  cols = w / scl;
+  DELTA = h / scl;
+
+  for (var x = 0; x < cols; x++) {
+    terrain[x] = [];
+    for (var y = 0; y < DELTA; y++) {
+      terrain[x][y] = 0; //specify a default value for now
+    }
+  }
+}
+
+draw(p5) {
+  
+  DELTA = brain.current.bands.data.delta[0];
+  
+  flying -= 0.1;
+  var yoff = flying;
+  for (var y = 0; y < DELTA; y++) {
+    var xoff = 0;
+    for (var x = 0; x < cols; x++) {
+      terrain[x][y] = p5.map(p5.noise(xoff, yoff), 0, 1, -100, 100);
+      xoff += 0.2;
+    }
+    yoff += 0.2; // becomes spikier
+  }
+
+  p5.background("black");
+  p5.translate(0, 50);
+  p5.rotateX(p5.PI / 3);
+  random_Color=p5.random(color_Codes.length);
+  random_Color=p5.floor(random_Color);
+  //draw house body
+  p5.fill(color_Codes[random_Color]);
+ 
+  p5.translate(-w / 2, -h / 2);
+  for (var y = 0; y < DELTA - 1; y++) {
+    p5.beginShape(p5.TRIANGLE_STRIP);
+    for (var x = 0; x < cols; x++) {
+      p5.vertex(x * scl, y * scl, terrain[x][y]);
+      p5.vertex(x * scl, (y + 1) * scl, terrain[x][y + 1]);
+    }
+    p5.endShape();
+  }
+}
+  
+   render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+        mouseClicked={this.mouseClicked}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)
+
+ 

@@ -1,0 +1,80 @@
+class MySketch extends React.Component {
+
+ setup(p5, whereToPlot) {
+ 
+ class Circle {
+  constructor(x, y, xSpeed, ySpeed, size) {
+    this.x = x;
+    this.y = y;
+    this.xSpeed = xSpeed;
+    this.ySpeed = ySpeed;
+    this.size = size;
+  }
+
+  move() {
+    this.x += this.xSpeed;
+    if (this.x < 0 || this.x > p5.width) {
+      this.xSpeed *= -1;
+    }
+
+    this.y += this.ySpeed;
+    if (this.y < 0 || this.y > p5.height) {
+      this.ySpeed *= -1;
+    }
+  }
+  reset() {
+    if (p5.mouseIsPressed === true) {
+      this.x = p5.mouseX;
+      this.y = p5.mouseY;
+    }
+  }
+
+  display() {
+    p5.fill(brain.current.bands.data.alpha[0]*30, 50, 100);
+    p5.circle(this.x, this.y, this.size);
+    }
+  }
+ 
+  p5.createCanvas(500, 500).parent(whereToPlot)
+  circles = [];
+  for(let i = 0; i < 10; i++) {
+    circles[i] = new Circle(p5.random(p5.width), p5.random(p5.height), p5.random(-3, 3), p5.random(-3, 3), p5.random(25,100));
+  }
+  
+}
+
+ draw(p5) {
+   p5.background('#fae');
+   
+   for(let i = 0; i < circles.length; i++) {
+    circles[i].move();
+    circles[i].display();
+    circles[i].reset();
+    }
+    
+}
+
+
+//leave this alone
+ render() {
+   return (
+      <Sketch
+        setup={this.setup}
+        draw={this.draw}
+      />
+   )
+ }
+
+}
+
+render (
+ <MySketch />
+)
+  
+
+
+
+
+
+
+

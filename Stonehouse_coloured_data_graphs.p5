@@ -7,6 +7,39 @@ class MySketch extends React.Component {
  }
 
  draw(p5) {
+
+  //VARIABLES
+   HEIGHT = p5.height
+   WIDTH = p5.width;
+   MOUSEX = p5.mouseX;
+   MOUSEY = p5.mouseY;
+
+   DELTA0 = brain.current.bands.data.delta[0] * 100;
+   THETA0 = brain.current.bands.data.theta[0]* 100;
+   ALPHA0 = brain.current.bands.data.alpha[0]* 100;   
+   BETA0 =  brain.current.bands.data.beta[0]* 100;
+   GAMMA0 = brain.current.bands.data.gamma[0]* 100;
+   
+   DELTA1 = brain.current.bands.data.delta[1] * 100;
+   THETA1 = brain.current.bands.data.theta[1]* 100;
+   ALPHA1 = brain.current.bands.data.alpha[1]* 100;   
+   BETA1 =  brain.current.bands.data.beta[1]* 100;
+   GAMMA1 = brain.current.bands.data.gamma[1]* 100;
+   
+   DELTA2 = brain.current.bands.data.delta[2] * 100;
+   THETA2 = brain.current.bands.data.theta[2]* 100;
+   ALPHA2 = brain.current.bands.data.alpha[2]* 100;   
+   BETA2 =  brain.current.bands.data.beta[2]* 100;
+   GAMMA2 = brain.current.bands.data.gamma[2]* 100;
+   
+   DELTA3 = brain.current.bands.data.delta[3] * 100;
+   THETA3 = brain.current.bands.data.theta[3]* 100;
+   ALPHA3 = brain.current.bands.data.alpha[3]* 100;   
+   BETA3 =  brain.current.bands.data.beta[3]* 100;
+   GAMMA3 = brain.current.bands.data.gamma[3]* 100;
+   
+
+  
    p5.background(0);
 p5.stroke(0) 
 p5.strokeWeight(1)
@@ -119,36 +152,7 @@ p5.rect(25,670,15,15)
 
 
 
-  //VARIABLES
-   HEIGHT = p5.height
-   WIDTH = p5.width;
-   MOUSEX = p5.mouseX;
-   MOUSEY = p5.mouseY;
 
-   DELTA0 = brain.current.bands.data.delta[0] * 100;
-   THETA0 = brain.current.bands.data.theta[0]* 100;
-   ALPHA0 = brain.current.bands.data.alpha[0]* 100;   
-   BETA0 =  brain.current.bands.data.beta[0]* 100;
-   GAMMA0 = brain.current.bands.data.gamma[0]* 100;
-   
-   DELTA1 = brain.current.bands.data.delta[1] * 100;
-   THETA1 = brain.current.bands.data.theta[1]* 100;
-   ALPHA1 = brain.current.bands.data.alpha[1]* 100;   
-   BETA1 =  brain.current.bands.data.beta[1]* 100;
-   GAMMA1 = brain.current.bands.data.gamma[1]* 100;
-   
-   DELTA2 = brain.current.bands.data.delta[2] * 100;
-   THETA2 = brain.current.bands.data.theta[2]* 100;
-   ALPHA2 = brain.current.bands.data.alpha[2]* 100;   
-   BETA2 =  brain.current.bands.data.beta[2]* 100;
-   GAMMA2 = brain.current.bands.data.gamma[2]* 100;
-   
-   DELTA3 = brain.current.bands.data.delta[3] * 100;
-   THETA3 = brain.current.bands.data.theta[3]* 100;
-   ALPHA3 = brain.current.bands.data.alpha[3]* 100;   
-   BETA3 =  brain.current.bands.data.beta[3]* 100;
-   GAMMA3 = brain.current.bands.data.gamma[3]* 100;
-   
    
 
  }

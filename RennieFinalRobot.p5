@@ -1,7 +1,8 @@
+// By Victoria Rennie
 // Press the mouse to change the background colour, based on your alpha and theta power
 // Pressing the mouse also makes the robot smile! 
 // The robot's pupils also follow the mouse. 
-// By Victoria Rennie
+
 
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {

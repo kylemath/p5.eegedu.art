@@ -1,5 +1,5 @@
-// BasicFrequencyBands.p5 - Meron Alemu
-//Take a QUICK AND DEEP breath and EXHALE for the sunrise to turn the sky and surrounding from night to day!!! 
+// Meron Alemu
+// Take a QUICK AND DEEP breath and EXHALE for the sunrise to turn the sky and surrounding from night to day!!! 
 
    let sunrise = [];
 class MySketch extends React.Component {

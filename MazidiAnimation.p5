@@ -1,3 +1,6 @@
+// Shafa Mazidi
+// Animation
+
 let headwidth = 150 ;
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {

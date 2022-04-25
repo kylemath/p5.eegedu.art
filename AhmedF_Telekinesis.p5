@@ -1,3 +1,7 @@
+// Sharmin Faiyaz
+// Telekinesis
+
+
 class MySketch extends React.Component {
  
  setup(p5, whereToPlot) {
@@ -6,7 +10,7 @@ class MySketch extends React.Component {
    
   score = 0;
   highscore = 0;
-  p5.frameRate(30);
+  p5.frameRate(10);
 
  }
 
@@ -75,7 +79,7 @@ class MySketch extends React.Component {
   
   //Using Delta waves (associated with the deepest levels of relaxation) to control how much levitation.
   Lvl = 600;
-  Lvl2 = DELTA - 150;  // change values to increase sensitivity/diffiulty. higher means less difficult
+  Lvl2 = DELTA - 210;  // change values to increase sensitivity/diffiulty. higher means less difficult
   
   // make sure doesnt go off screen
   if (Lvl2 < 200){

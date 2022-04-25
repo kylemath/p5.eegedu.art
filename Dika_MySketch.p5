@@ -1,5 +1,6 @@
-// BasicFrequencyBands.p5 - Ky Mathewson
-// Demonstration of text and animation with frequency bands
+// Kirsten Dika
+// MySketch
+
 let lineY = [];
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {

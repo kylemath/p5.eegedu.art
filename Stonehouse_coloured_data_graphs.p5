@@ -1,4 +1,5 @@
-
+// Grace Stonehouse
+// ColouredDataGraphs
 
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {

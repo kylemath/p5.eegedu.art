@@ -1,5 +1,5 @@
-// MultipleBalls.p5 - Ky Mathewson
-// Another class examle with more balls
+// Kyle Simon
+// Brain Typhoon
 
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {

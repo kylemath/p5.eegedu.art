@@ -1,3 +1,5 @@
+// Andrada Gaidanov
+// FlowerBrain
 
 
 class MySketch extends React.Component {

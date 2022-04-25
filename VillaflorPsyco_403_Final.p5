@@ -1,5 +1,7 @@
-//Assignment is inspired by Daniel Shiffman's 3D Terrian Generation With Perlin Noise In Processing Coding Challenge 1. Adapted for PSYCO 403 Final Project by Lance Villaflor with permission of Prof.Kyle Mathewson.
-//Psyco 403 Final - 3D Terrain Generation Using Perlin Noise and Delta EEG Data by Lance Villaflor
+// Lance Villaflor
+// Assignment is inspired by Daniel Shiffman's 3D Terrian Generation With Perlin Noise In Processing Coding Challenge 1. Adapted for PSYCO 403 Final Project by Lance Villaflor with permission of Prof.Kyle Mathewson.
+// Psyco 403 Final - 3D Terrain Generation Using Perlin Noise and Delta EEG Data by Lance Villaflor
+
 var cols, DELTA;
 var scl = 20;
 var w = 1400;

@@ -1,3 +1,6 @@
+// Amanda Khamvongsa
+// BikeRace
+
 class MySketch extends React.Component {
  
  setup(p5, whereToPlot) {

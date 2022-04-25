@@ -1,4 +1,5 @@
-//referred to MultipleBalls.p5 by Kyle Mathewson to edit this code as necessary
+// Aakanksha Jayaswal
+// Untitled
 
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {

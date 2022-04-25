@@ -1,3 +1,6 @@
+// Aislinn Armstrong
+// Untitled
+
 class MySketch extends React.Component {
  setup(p5, whereToPlot) {
    p5.createCanvas(900, 900).parent(whereToPlot)
@@ -11,13 +14,7 @@ class MySketch extends React.Component {
    p5.background(255)
     branch(100)
     
-   DELTA = brain.current.bands.data.delta[0] * 10;
-   THETA = brain.current.bands.data.theta[0]* 10;
-   ALPHA = brain.current.bands.data.alpha[0]* 10;   
-   BETA =  brain.current.bands.data.beta[0]* 10;
-   GAMMA =  brain.current.bands.data.gamma[0]* 10;
-   
-
+ 
  function branch(len) {
  p5.push()
    if (len > 10) {
@@ -31,6 +28,13 @@ class MySketch extends React.Component {
     branch(len * p5.random(0.7, 0.9))
   } 
   else {
+    DELTA = brain.current.bands.data.delta[0] * 10;
+    THETA = brain.current.bands.data.theta[0]* 10;
+    ALPHA = brain.current.bands.data.alpha[0]* 10;   
+    BETA =  brain.current.bands.data.beta[0]* 10;
+    GAMMA =  brain.current.bands.data.gamma[0]* 10;
+   
+
     var r = p5.random(DELTA, THETA, ALPHA, BETA, GAMMA)* 5 + p5.random(-30, 30)
     var g = p5.random(DELTA, THETA, ALPHA, BETA, GAMMA)* 6 + p5.random (-30, 30)
     var b = p5.random(DELTA, THETA, ALPHA, BETA, GAMMA)* 3 + p5.random (-30, 30)

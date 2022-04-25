@@ -28,6 +28,7 @@ class MySketch extends React.Component {
     branch(len * p5.random(0.7, 0.9))
   } 
   else {
+    
     DELTA = brain.current.bands.data.delta[0] * 10;
     THETA = brain.current.bands.data.theta[0]* 10;
     ALPHA = brain.current.bands.data.alpha[0]* 10;   
